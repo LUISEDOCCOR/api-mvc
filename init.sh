@@ -6,10 +6,15 @@ case $1 in
     --dev)
         go install github.com/air-verse/air@latest
         export PATH=$PATH:$HOME/go/bin
+        clear
         air
         ;;
     --prod)
-        go run main.go
+        clear
+        go build -o main
+        ./main
         ;;
-
+    *)
+        echo "Invalid --tag"
+    ;;
 esac
