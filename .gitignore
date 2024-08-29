@@ -2,3 +2,5 @@ bin/
 tmp/
 *.env
 main
+api-mvc
+*.db

@@ -1,22 +1,21 @@
-package user
+package user_model
 
 import (
 	"github.com/LUISEDOCCOR/api-mvc/database"
 	"github.com/LUISEDOCCOR/api-mvc/models"
-	"gorm.io/gorm"
 )
 
-func create(user models.User) *gorm.DB {
-        result := database.DB.Create(user)
-        return result
+func Create(user *models.User) error {
+	result := database.DB.Create(user)
+	return result.Error
 }
-func getById(id uint) models.User {
-        var user models.User
-        database.DB.First(&user, id)
-        return user
+func GetById(id uint) (models.User, error) {
+	var user models.User
+	result := database.DB.First(&user, id)
+	return user, result.Error
 }
-func getByEmail(email string) models.User {
-        var user models.User
-        database.DB.Where(&models.User{Email: email}).Find(&user)
-        return user
+func GetByEmail(email string) (models.User, error) {
+	var user models.User
+	result := database.DB.Where(&models.User{Email: email}).Find(&user)
+	return user, result.Error
 }

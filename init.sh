@@ -2,6 +2,8 @@
 
 echo "Start MCV-API"
 
+go mod tidy
+
 case $1 in
     --dev)
         go install github.com/air-verse/air@latest

@@ -12,7 +12,7 @@ var DB *gorm.DB
 func Conn() {
 	var err error
 
-	DB, err = gorm.Open(sqlite.Open("gorm.db"), &gorm.Config{})
+	DB, err = gorm.Open(sqlite.Open("gorm.sqlite"), &gorm.Config{})
 	if err != nil {
 		fmt.Println("Error in the databse 🚨")
 	} else {
