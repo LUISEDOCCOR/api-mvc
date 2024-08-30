@@ -61,9 +61,9 @@ func Login(c *fiber.Ctx) error {
 		return utils.CreateResponse(c, 400, "Incorrect or non-existent data")
 	}
 
-	mach, _ := utils.VerifyPassword(user.Password, existingUser.Password)
+	macth, _ := utils.VerifyPassword(user.Password, existingUser.Password)
 
-	if !mach {
+	if !macth {
 		return utils.CreateResponse(c, 400, "Incorrect or non-existent data")
 	}
 
