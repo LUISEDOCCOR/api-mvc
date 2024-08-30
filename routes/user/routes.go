@@ -7,4 +7,5 @@ import (
 
 func Router(router fiber.Router) {
 	router.Post("/create", user_controller.Create)
+	router.Post("/login", user_controller.Login)
 }

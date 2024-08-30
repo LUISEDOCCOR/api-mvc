@@ -38,3 +38,8 @@ func HashPassword(user *models.User) {
 	hash, _ := argon2id.CreateHash(user.Password, argon2id.DefaultParams)
 	user.Password = hash
 }
+
+func VerifyPassword(userPassord string, databasePassword string) (bool, error) {
+	match, err := argon2id.ComparePasswordAndHash(userPassord, databasePassword)
+	return match, err
+}

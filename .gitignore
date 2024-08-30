@@ -4,3 +4,4 @@ tmp/
 main
 api-mvc
 *.db
+*.sqlite
