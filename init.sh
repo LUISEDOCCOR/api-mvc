@@ -13,8 +13,8 @@ case $1 in
         ;;
     --prod)
         clear
-        go build -o main
-        ./main
+        go build -o ./build/main
+        ./build/main
         ;;
     *)
         echo "Invalid --tag"
