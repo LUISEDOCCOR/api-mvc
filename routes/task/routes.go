@@ -7,4 +7,5 @@ import (
 
 func Router(router fiber.Router) {
 	router.Get("/", task_controller.GetALL)
+	router.Post("/create", task_controller.Create)
 }

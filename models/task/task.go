@@ -14,7 +14,7 @@ func Create(task *models.Task) error {
 
 func GetById(id uint) (models.Task, error) {
 	var task models.Task
-	result := database.DB.First(&task, id)
+	result := database.DB.Select("id, title, content, isDone").First(&task, id)
 	return task, result.Error
 }
 
