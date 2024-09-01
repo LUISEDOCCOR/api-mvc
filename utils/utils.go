@@ -2,6 +2,7 @@ package utils
 
 import (
 	"os"
+	"strconv"
 
 	"github.com/LUISEDOCCOR/api-mvc/models"
 	"github.com/LUISEDOCCOR/api-mvc/types"
@@ -54,4 +55,9 @@ func GetClaims(c *fiber.Ctx) types.TokenClaims {
 		Name:  claims["name"].(string),
 		Email: claims["email"].(string),
 	}
+}
+
+func ParseUint(idStr string) (uint, error) {
+	id, err := strconv.ParseUint(idStr, 10, 64)
+	return uint(id), err
 }

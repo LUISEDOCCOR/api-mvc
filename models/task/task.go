@@ -12,9 +12,9 @@ func Create(task *models.Task) error {
 	return result.Error
 }
 
-func GetById(id uint) (models.Task, error) {
+func GetById(id uint, user_id uint) (models.Task, error) {
 	var task models.Task
-	result := database.DB.Select("id, title, content, isDone").First(&task, id)
+	result := database.DB.Where("id = ? AND user_id = ?", id, user_id).First(&task, id)
 	return task, result.Error
 }
 
@@ -25,7 +25,7 @@ func Delete(id uint) error {
 
 func GetAll(user_id uint) ([]models.Task, error) {
 	var tasks []models.Task
-	result := database.DB.Where("user_id", user_id).Find(&tasks)
+	result := database.DB.Where("user_id = ?", user_id).Find(&tasks)
 	return tasks, result.Error
 }
 

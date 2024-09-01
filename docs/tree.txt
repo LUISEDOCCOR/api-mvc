@@ -1,0 +1,40 @@
+.
+├── README.md
+├── api-mvc
+├── contollers
+│   ├── task
+│   │   └── task.go
+│   └── user
+│       └── user.go
+├── database
+│   └── connection.go
+├── docs
+│   └── tree.txt
+├── go.mod
+├── go.sum
+├── gorm.sqlite
+├── init.sh
+├── main
+├── main.go
+├── middlewares
+│   └── middlewares.go
+├── models
+│   ├── models.go
+│   ├── task
+│   │   └── task.go
+│   └── user
+│       └── user.go
+├── routes
+│   ├── task
+│   │   └── routes.go
+│   └── user
+│       └── routes.go
+├── tmp
+│   ├── build-errors.log
+│   └── main
+├── types
+│   └── types.go
+└── utils
+    └── utils.go
+
+16 directories, 22 files

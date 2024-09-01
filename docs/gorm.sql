@@ -1,0 +1,13 @@
+PRAGMA foreign_keys=OFF;
+BEGIN TRANSACTION;
+CREATE TABLE `tasks` (`id` integer PRIMARY KEY AUTOINCREMENT,`created_at` datetime,`updated_at` datetime,`deleted_at` datetime,`title` text NOT NULL,`content` text,`is_done` numeric NOT NULL,`user_id` integer NOT NULL);
+INSERT INTO tasks VALUES(1,'2024-09-01 14:54:51.706889-06:00','2024-09-01 14:54:51.706889-06:00',NULL,'Task 1','Content task 1',0,1);
+INSERT INTO tasks VALUES(2,'2024-09-01 14:54:52.366528-06:00','2024-09-01 14:54:52.366528-06:00',NULL,'Task 1','Content task 1',0,1);
+INSERT INTO tasks VALUES(3,'2024-09-01 14:54:52.577884-06:00','2024-09-01 14:54:52.577884-06:00',NULL,'Task 1','Content task 1',0,1);
+INSERT INTO tasks VALUES(4,'2024-09-01 14:54:52.744671-06:00','2024-09-01 14:54:52.744671-06:00',NULL,'Task 1','Content task 1',0,1);
+CREATE TABLE `users` (`id` integer PRIMARY KEY AUTOINCREMENT,`created_at` datetime,`updated_at` datetime,`deleted_at` datetime,`name` text NOT NULL,`password` text NOT NULL,`email` text NOT NULL);
+DELETE FROM sqlite_sequence;
+INSERT INTO sqlite_sequence VALUES('tasks',4);
+CREATE INDEX `idx_tasks_deleted_at` ON `tasks`(`deleted_at`);
+CREATE INDEX `idx_users_deleted_at` ON `users`(`deleted_at`);
+COMMIT;
