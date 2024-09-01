@@ -4,6 +4,7 @@ import (
 	"os"
 
 	"github.com/LUISEDOCCOR/api-mvc/models"
+	"github.com/LUISEDOCCOR/api-mvc/types"
 	"github.com/alexedwards/argon2id"
 	"github.com/gofiber/fiber/v2"
 	"github.com/golang-jwt/jwt/v4"
@@ -42,4 +43,15 @@ func HashPassword(user *models.User) {
 func VerifyPassword(userPassord string, databasePassword string) (bool, error) {
 	match, err := argon2id.ComparePasswordAndHash(userPassord, databasePassword)
 	return match, err
+}
+
+func GetClaims(c *fiber.Ctx) types.TokenClaims {
+	user := c.Locals("user").(*jwt.Token)
+	claims := user.Claims.(jwt.MapClaims)
+
+	return types.TokenClaims{
+		Id:    uint(claims["id"].(float64)),
+		Name:  claims["name"].(string),
+		Email: claims["email"].(string),
+	}
 }
