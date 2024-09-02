@@ -105,3 +105,42 @@ func Finish(c *fiber.Ctx) error {
 
 	return c.SendStatus(200)
 }
+
+func Update(c *fiber.Ctx) error {
+	newTask := new(models.Task)
+
+	if err := c.BodyParser(newTask); err != nil {
+		return utils.CreateResponse(c, 200, "Invalid JSON")
+	}
+
+	task, err := ExistingTask(c)
+
+	if err != nil {
+		return utils.CreateResponse(c, 400, "Invalid Id")
+	}
+
+	title := func() string {
+		if newTask.Title == "" {
+			return task.Title
+		}
+		return newTask.Title
+	}
+
+	content := func() string {
+		if newTask.Content == "" {
+			return task.Content
+		}
+		return newTask.Content
+	}
+
+	task.Title = title()
+	task.Content = content()
+
+	err = task_model.Update(&task)
+
+	if err != nil {
+		return utils.CreateResponse(c, 500, "Error updating task")
+	}
+
+	return c.SendStatus(200)
+}
