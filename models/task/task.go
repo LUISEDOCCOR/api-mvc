@@ -29,6 +29,12 @@ func GetAll(user_id uint) ([]models.Task, error) {
 	return tasks, result.Error
 }
 
+func GetAllByStatus(user_id uint, isDone bool) ([]models.Task, error) {
+	var tasks []models.Task
+	result := database.DB.Where("user_id = ? AND is_done = ?", user_id, isDone).Find(&tasks)
+	return tasks, result.Error
+}
+
 func Update(task *models.Task) error {
 	result := database.DB.Save(&task)
 	return result.Error

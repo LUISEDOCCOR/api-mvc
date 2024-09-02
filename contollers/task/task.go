@@ -2,6 +2,7 @@ package task_controller
 
 import (
 	"errors"
+	"strconv"
 
 	"github.com/LUISEDOCCOR/api-mvc/models"
 	task_model "github.com/LUISEDOCCOR/api-mvc/models/task"
@@ -30,6 +31,26 @@ func GetALL(c *fiber.Ctx) error {
 	tokenData := utils.GetClaims(c)
 
 	tasks, err := task_model.GetAll(tokenData.Id)
+
+	if err != nil {
+		return utils.CreateResponse(c, 500, "Database Error")
+	}
+
+	return c.JSON(tasks)
+}
+
+// Status make references to whether it has already been finished (isDone)
+func GetByStatus(c *fiber.Ctx) error {
+	isDoneStr := c.Query("isdone", "false")
+	tokenData := utils.GetClaims(c)
+
+	if isDoneStr != "false" && isDoneStr != "true" {
+		return utils.CreateResponse(c, 400, "Invalid value for isdone")
+	}
+
+	isDone, _ := strconv.ParseBool(isDoneStr)
+
+	tasks, err := task_model.GetAllByStatus(tokenData.Id, isDone)
 
 	if err != nil {
 		return utils.CreateResponse(c, 500, "Database Error")
