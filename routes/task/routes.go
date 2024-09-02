@@ -8,6 +8,7 @@ import (
 func Router(router fiber.Router) {
 	router.Get("/:id", task_controller.GetById)
 	router.Get("/", task_controller.GetALL)
+	router.Get("/finish/:id", task_controller.Finish)
 	router.Delete("/:id", task_controller.Delete)
 	router.Post("/create", task_controller.Create)
 }

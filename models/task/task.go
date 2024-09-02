@@ -29,4 +29,7 @@ func GetAll(user_id uint) ([]models.Task, error) {
 	return tasks, result.Error
 }
 
-//TODO ✅ UPDATE
+func Update(task *models.Task) error {
+	result := database.DB.Save(&task)
+	return result.Error
+}
