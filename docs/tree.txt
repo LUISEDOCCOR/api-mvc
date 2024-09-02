@@ -1,6 +1,7 @@
 .
 ├── README.md
-├── api-mvc
+├── build
+│   └── main
 ├── contollers
 │   ├── task
 │   │   └── task.go
@@ -14,7 +15,6 @@
 ├── go.sum
 ├── gorm.sqlite
 ├── init.sh
-├── main
 ├── main.go
 ├── middlewares
 │   └── middlewares.go
@@ -37,4 +37,4 @@
 └── utils
     └── utils.go
 
-16 directories, 22 files
+17 directories, 21 files

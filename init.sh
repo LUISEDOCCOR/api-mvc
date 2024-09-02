@@ -10,12 +10,17 @@ case $1 in
         export PATH=$PATH:$HOME/go/bin
         clear
         air
-        ;;
+    ;;
     --prod)
         clear
         go build -o ./build/main
         ./build/main
-        ;;
+    ;;
+    --docs)
+        rm -rf ./docs/*
+        tree > ./docs/tree.txt
+        sqlite3 gorm.sqlite .dump > ./docs/gorm.sql
+    ;;
     *)
         echo "Invalid --tag"
     ;;
