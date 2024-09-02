@@ -59,3 +59,26 @@ func GetById(c *fiber.Ctx) error {
 	return c.JSON(task)
 
 }
+
+func Delete(c *fiber.Ctx) error {
+	id, err := utils.ParseUint(c.Params("id"))
+	tokenData := utils.GetClaims(c)
+
+	if err != nil {
+		return utils.CreateResponse(c, 400, "Invalid Task ID")
+	}
+
+	task, err := task_model.GetById(id, tokenData.Id)
+
+	if task.ID == 0 {
+		return utils.CreateResponse(c, 404, "No task was found with that id")
+	}
+
+	err = task_model.Delete(task.ID)
+
+	if err != nil {
+		return utils.CreateResponse(c, 500, "Error deleting task")
+	}
+
+	return c.SendStatus(200)
+}

@@ -19,7 +19,7 @@ func GetById(id uint, user_id uint) (models.Task, error) {
 }
 
 func Delete(id uint) error {
-	result := database.DB.Delete(models.Task{}, id)
+	result := database.DB.Delete(&models.Task{}, id)
 	return result.Error
 }
 
