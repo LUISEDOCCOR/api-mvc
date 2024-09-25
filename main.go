@@ -23,6 +23,10 @@ func main() {
 
 	app := fiber.New()
 
+	app.Get("/", func(c *fiber.Ctx) error {
+		return c.SendStatus(200)
+	})
+
 	UserRouter := app.Group(rootEndpoint + "/user")
 	user_routes.Router(UserRouter)
 
