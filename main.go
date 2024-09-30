@@ -7,6 +7,7 @@ import (
 	task_routes "github.com/LUISEDOCCOR/api-mvc/routes/task"
 	user_routes "github.com/LUISEDOCCOR/api-mvc/routes/user"
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/joho/godotenv"
 )
 
@@ -22,6 +23,8 @@ func main() {
 	database.DB.AutoMigrate(models.User{})
 
 	app := fiber.New()
+
+	app.Use(cors.New())
 
 	app.Get("/", func(c *fiber.Ctx) error {
 		return c.SendStatus(200)
